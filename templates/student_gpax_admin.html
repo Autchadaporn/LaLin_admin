@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="{{ url_for ('static', filename='css/style.css') }}" >
+    <title>study gpax</title>
+</head>
+<body>
+    <div class="container">
+    <div align="center">
+        <form action="/student_grade_cal" method="POST">
+            <label>ตารางที่ได้จากการคำนวณเกรดของนิสิต</label>
+            <table class="table table-hover">
+            <thead class="thead-light">
+                <tr>
+                    <th>รหัสนิสิต</th>
+                    <th>เกรดเฉลี่ยต่อเทอม(GPA)</th>
+                    <th>เกรดเฉลี่ยรวม(GPAX)</th>
+                    <th>สถานะ</th>
+                    <th></th>
+                </tr>
+            </thead>
+                {% for row in data %}
+                <tr> 
+                    <td>{{row.student_id}}</td>
+                    <td>{{row.gpa}}</td>
+                    <td>{{row.gpax}}</td>
+                    <td>{{row.status}}</td>
+                    <td><a href="/deletestudent_grade_cal/{{row.student_id}}" class="btn btn-danger btn-xs" onclick="return confirm('คุณต้องการลบข้อมูลหรือไม่?')">Delete</a></td>
+
+                </tr>
+                       
+                {% endfor %}
+            </table>
+            <!-- <a href="/addstudent_grade">เพิ่มวิชาที่เรียน</a> -->
+        </form>
+    </div>
+    <div style="margin-bottom: 8em;">
+    
+        <a href="/" class="btn btn-info"  style="float: left;">กลับ</a>
+    </div>
+    </div>  
+</body>
+ 
+</html>

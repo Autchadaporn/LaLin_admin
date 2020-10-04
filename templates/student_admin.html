@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="{{ url_for ('static', filename='css/style.css') }}" >
+    <title>student</title>
+</head>
+<body>
+    <div class="container">
+    <div align="center">
+        <label>รายชื่อนิสิต</label>
+        <table class="table table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th>รหัสนิสิต</th>
+                <th>ชื่อ</th>
+                <th>นามสกุล</th>
+                <th>รหัสแผนกานศึกษา</th>
+                <th>รหัสปีที่เข้าเรียน</th>
+            </tr>
+        </thead>
+            {% for row in data %}
+            <tr> 
+                <td>{{row.student_id}}</td>
+                <td>{{row.student_name}}</td>
+                <td>{{row.student_lastName}}</td>
+                <td>{{row.plan_id}}</td>
+                <td>{{row.year_id}}</td>
+                <td><a href="/" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.student_id}}">แก้ไข</a></td>
+                <td><a href="/deletestudent/{{row.student_id}}" class="btn btn-danger btn-xs" onclick="return confirm('คุณต้องการลบข้อมูลหรือไม่?')">Delete</a></td>
+            </tr>
+        
+        
+        <!-- ------------------------------------------------------------------------------------------------- -->
+        <div id="modaledit{{row.student_id}}" class="modal fade" role="dialog"> <!-- ดึงค่ามาจาก id commit -->
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">แก้ไขข้อมูลนิสิต</h4>
+                    </div>
+                <div class="form-group">
+                <form action="/editstudent" method="POST"> <!--  ส่งค่าไปยังdatabase -->
+                <!-- ---------------- ------    ----------  ------------------------->
+                <div class="form-group">
+                    รหัสนิสิต<input type="text" name="student_id" value="{{row.student_id}}">
+                </div>
+                <div class="form-group">
+                    ชื่อ<input type="text" name="student_name" value="{{row.student_name}}">
+                </div>
+                <div class="form-group">
+                    นามสกุล<input type="text" name="student_lastName" value="{{row.student_lastName}}">
+                </div>
+                <div class="form-group">
+                    เลือกแผนการศึกษา<select name="plan_id">
+                        {% for i in plan %}
+                        <option value="{{i.plan_id}}">{{i.plan_name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    ปีการศึกษา<input type="text" name="year_id" value="{{row.year_id}}">
+                </div>
+                <input type="submit" value="บึนทึก" class="btn btn-warning">
+    
+                </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
+                </div>
+            </div>
+        </div>
+        <!-- ----------------------------------------------------------------------------------------------------- -->
+    {% endfor%}
+    </table>
+    </div>
+    <div style="margin-bottom: 8em;">
+        <a href="/addstudent" class="btn btn-info" style="float: right;">เพิ่ม</a>
+        <a href="/" class="btn btn-info"  style="float: left;" >กลับ</a>
+    </div>
+    </div>
+</body>
+ 
+</html>

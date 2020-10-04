@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>เพิ่มนิสิต</title>
+</head>
+<body>
+    <div class="container">
+        <div align="center">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">แก้ไขข้อมูล</h4>
+                </div>
+            <div class="modal-body">
+                <form action="/addstudent" method="POST">
+                    <div class="form-group">
+                        รหัสนิสิต<input type="text" name="student_id">
+                    </div>
+                    <div class="form-group">
+                        ชื่อ<input type="text" name="student_name">
+                    </div>
+                    <div class="form-group">
+                        นามสกุล<input type="text" name="student_lastName">
+                    </div>
+                    <div class="form-group">
+                        เลือกแผนการศึกษา<select name="plan_id">
+                            {% for i in plan %}
+                            <option value="{{i.plan_id}}">{{i.plan_name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        ปีการศึกษา<input type="text" name="year_id"> 
+                    </div>
+                    <input type="submit" value="เพิ่มนิสิต">
+                    <div class="modal-footer">
+                        <a href="/student">กลับ</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        </div>
+</body>
+</html>

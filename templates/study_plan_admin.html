@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    
+    <link rel="stylesheet" href="{{ url_for ('static', filename='css/style.css') }}" >
+    <title>study plan</title>
+</head>
+<body>
+    <div class="container">
+    <div align="center">
+        <form action="/study_plan" method="POST">
+        เลือกแผนการเรียน
+            <select name="plan_id">
+                {% for i in plan %}
+                <option value="{{i.plan_id}}">{{i.plan_name}}</option>
+                {% endfor %}
+            </select><input type="submit" value="เลือก" style="margin-left: 1em;">
+            <table class="table table-hover" style="margin-top: 1em;">
+            <thead class="thead-light">
+                <tr>
+                    <th>รหัสแผนการเรียน</th>
+                    <th>รหัสวิชา</th>
+                    <th>ชื่อวิชาภาษาไทย</th>
+                    <th>ชื่อวิชาภาษาอังกฤษ</th>
+                    <th>ชั้นปี</th>
+                    <th>เทอม</th>
+                    <td></td>
+                </tr>
+            </thead>
+                {% for row in data %}
+                <tr> 
+                    <td style="display:none;"><input type="hidden" name="study_plan_row_id" value="{{row.study_plan_row_id}}"></td>
+                    <td>{{row.plan_id}}</td>
+                    <td>{{row.subject_id}}</td>
+                    <td>{{row.subject_nameTh}}</td>
+                    <td>{{row.subject_nameEng}}</td>
+                    <td>{{row.year}}</td>
+                    <td>{{row.term}}</td>
+                    <td><a href="/deletestudy_plan/{{row.study_plan_row_id}}" class="btn btn-danger btn-xs" onclick="return confirm('คุณต้องการลบข้อมูลหรือไม่?')">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </form>
+    </div>
+    <div style="margin-bottom: 8em;">
+        <a href="/addstudy_plan" class="btn btn-info"  style="float: right;" >เพิ่มรายวิชา</a>
+        <a href="/" class="btn btn-info"  style="float: left;" >กลับ</a>
+    </div>
+    </div>
+</body>
+ 
+</html>

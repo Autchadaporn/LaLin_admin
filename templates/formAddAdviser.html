@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="{{ url_for ('static', filename='css/style.css') }}" >
+    <title>เพิ่มadviser</title>
+</head>
+<body>
+    <div class="container">
+        <div align="center">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">แก้ไขข้อมูล</h4>
+                </div>
+            <div class="modal-body">
+                <form action="/addadviser" method="POST">
+                    <div class="form-group">
+                        ชื่อนิสิต: <select name="student_id">
+                            {% for i in student %}
+                            <option value="{{i.student_id}}">{{i.student_name}} {{i.student_lastName}}</option>
+                            {% endfor %}
+                        </select><br>
+                    </div>
+                    <div class="form-group" >
+                        อาจารย์: <select name="teacher_id">
+                            {% for i in teacher %}
+                            <option value="{{i.teacher_id}}">{{i.teacher_name}} {{i.teacher_lastName}}</option>
+                            {% endfor %}
+                        </select><br>
+                    </div>
+                    <div class="form-group" >
+                        สถานะ: 
+                        <input type="radio" name="adviser_status" value="Y" id="Y"  checked><label for="Y">เป็นที่ปรึกษา</label>
+                        <input type="radio" id="female" name="adviser_status" value="N" id="N"  ><label for="N">ยกเลิกการเป็นที่ปรึกษา</label><br> 
+                    </div>
+                    <!-- เซทไว้ว่าค่าเริ่มต้นต้องเป็นY -->
+                    
+                        <input type="submit" value="เพิ่ม">
+                        <div class="modal-footer">
+                            <a href="/adviser">กลับ</a>
+                        </div>
+                
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

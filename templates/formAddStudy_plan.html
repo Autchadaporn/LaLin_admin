@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>เพิ่มวิชาลงในแผนการเรียน</title>
+</head>
+<body>
+    <div class="container">
+        <div align="center">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">เพิ่มข้อมูล</h4>
+                </div>
+        <form action="/addstudy_plan" method="POST">
+            <div class="form-group" >
+                แผนการเรียน <select name="plan_id" style="width: 10em;">
+                    {% for i in plan %}
+                    <option value="{{i.plan_id}}">{{i.plan_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group" >
+                รหัสวิชา <select name="subject_id" style="width: 10em;">
+                    {% for i in subject %}
+                    <option value="{{i.subject_id}}" >[{{i.subject_id}}] {{i.subject_nameTh}}  {{i.subject_nameEng}}</option>
+                    {% endfor %}
+                    </select>
+            </div>
+            <div class="form-group" >
+                ปี <select name="year" style="width: 10em;">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+            </div>
+            <div class="form-group" >
+                เทอม <select name="term" style="width: 10em;">
+                    <option>1</option>
+                    <option>2</option>
+                </select>
+            </div>
+            <input type="submit" value="เพิ่ม">
+            <div class="modal-footer">
+                <a href="/study_plan">กลับ</a>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+</body>
+</html>

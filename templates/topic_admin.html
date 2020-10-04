@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
+    
+    <link rel="stylesheet" href="{{ url_for ('static', filename='css/style.css') }}" >
+    <title>topic</title>
+</head>
+<body>
+    <div class="container">
+        <div align="center">
+            <label>ตารางข้อมูลกิจกรรม</label>
+            <table class="table table-hover">
+            <thead class="thead-light">
+                <tr>
+                    <th>รหัสกิจกรรม</th>
+                    <th>ชื่อกิจกรรม</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+                {% for row in data %}
+                <tr> 
+                    <td>{{row.topic_id}}</td>
+                    <td>{{row.topic_name}}</td>
+                    <td><a href="/" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.topic_id}}">แก้ไข</a></td>
+                    <td><a href="/deletetopic/{{row.topic_id}}" class="btn btn-danger btn-xs" onclick="return confirm('คุณต้องการลบข้อมูลหรือไม่?')">Delete</a></td>
+                </tr>
+            
+            
+            <!-- ------------------------------------------------------------------------------------------------- -->
+            <div id="modaledit{{row.topic_id}}" class="modal fade" role="dialog"> <!-- ดึงค่ามาจาก id commit -->
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                      
+                            <h4 class="modal-title">แก้ไขข้อมูล</h4>
+                        </div>
+                    <div class="modal-body">
+                    <form action="/edittopic" method="POST"> <!--  ส่งค่าไปยังdatabase -->
+                    <!-- ---------------- ------    ----------  ------------------------->
+                    <input type="hidden" name="topic_id" value="{{row.topic_id}}" >
+                    ชื่อกิจกรรม <input type="text" name="topic_name" value="{{row.topic_name}}">
+                    <input type="submit" value="บึนทึก" class="btn btn-warning">
+        
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
+                    </div>
+                </div>
+            </div>
+            <!-- ----------------------------------------------------------------------------------------------------- -->
+        {% endfor%}
+        </table>
+        </div>
+        <div style="margin-bottom: 8em;">
+            <a href="/addtopictable" class="btn btn-info" style="float: right;">เพิ่ม</a>
+            <a href="/" class="btn btn-info"  style="float: left;" >กลับ</a>
+        </div>
+    </div>
+</body>
+ 
+</html>

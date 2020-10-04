@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="{{ url_for ('static', filename='css/style.css') }}" >
+    <title>subject</title>
+</head>
+<body>
+    <div class="container">
+        <div align="center">
+            <label>ตารางข้อมูลวิชา</label>
+            <table class="table table-hover">
+            <thead class="thead-light">
+                <tr>
+                    <th>รหัสกิจกรรม</th>
+                    <th>ชื่อ</th>
+                    <th>ชื่อ(ภาษาอังกฤษ)</th>
+                    <th>หน่วยกิต</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+                {% for row in data %}
+                <tr> 
+                    <td>{{row.subject_id}}</td>
+                    <td>{{row.subject_nameTh}}</td>      
+                    <td>{{row.subject_nameEng}}</td>
+                    <td>{{row.unit}}</td>
+                    <td><a href="/" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.subject_id}}">แก้ไข</a></td>
+                    <td><a href="/deletesubject/{{row.subject_id}}" class="btn btn-danger btn-xs" onclick="return confirm('คุณต้องการลบข้อมูลหรือไม่?')">Delete</a></td>
+                </tr>
+                
+            
+            
+            <!-- ------------------------------------------------------------------------------------------------- -->
+            <div id="modaledit{{row.subject_id}}" class="modal fade" role="dialog"> <!-- ดึงค่ามาจาก id commit -->
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                            <h4 class="modal-title">แก้ไขรายวิชา</h4>
+                        </div>
+                    <div class="modal-body">
+                    <form action="/editsubject" method="POST"> <!--  ส่งค่าไปยังdatabase -->
+                    <!-- ---------------- ------    ----------  ------------------------->
+                    <div class="form-group" >
+                        รหัสวิชา<input type="text" name="subject_id" value="{{row.subject_id}}" readonly>
+                    </div>
+                    <div class="form-group" >
+                        ชื่อภาษาไทย<input type="text"  name="subject_nameTh" value="{{row.subject_nameTh}}" >
+                    </div>
+                    <div class="form-group" >
+                        ชื่อภาษาอังกฤษ<input  type="text" name="subject_nameEng" value="{{row.subject_nameEng}}">
+                    </div>
+                    <div class="form-group" >
+                        หน่วยกิต<input type="text"  name="unit" value="{{row.unit}}">
+                    </div>
+                    <input type="submit" value="บึนทึก" class="btn btn-warning">
+        
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
+                    </div>
+                </div>
+            </div>
+            <!-- ----------------------------------------------------------------------------------------------------- -->
+        {% endfor%}
+        </table>
+            
+        </div>
+        <div style="margin-bottom: 8em;">
+            <a href="/addsubject" class="btn btn-info" style="float: right;">เพิ่ม</a>
+            <a href="/" class="btn btn-info"  style="float: left;" >กลับ</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>เพิ่มรายวิชา</title>
+</head>
+<body>
+    <div class="container">
+        <div align="center">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">เพิ่มข้อมูล</h4>
+                </div>
+            <div class="modal-body">
+                <form action="/addsubject" method="POST">
+                    <div class="form-group" >
+                        รหัสวิชา<input name="subject_id" placeholder="รหัสวิชา(กรอกตัวเลขเท่านั้น)" onKeyUp="if(this.value*1!=this.value) this.value='' ;" >
+                    </div>
+                    <div class="form-group" >
+                        ชื่อภาษาไทย<input name="subject_nameTh" placeholder="ชื่อวิชาภาษาไทย">
+                    </div>
+                    <div class="form-group" >
+                        ชื่อภาษาอังกฤษ<input name="subject_nameEng" placeholder="ชื่อวิชาภาษาอังกฤษ">
+                    </div>
+                    <div class="form-group" >
+                        หน่วยกิต<input name="unit" placeholder="หน่วยกิต">
+                    </div>
+                    <input type="submit" value="เพิ่มรายวิชา">
+                    <div class="modal-footer">
+                        <a href="/subject">กลับ</a>
+                    </div>
+                </form>
+        </div>
+    </div>
+    </div>
+</body>
+</html>

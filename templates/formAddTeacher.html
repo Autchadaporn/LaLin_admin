@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>เพิ่มอาจารย์</title>
+</head>
+<body>
+    <div class="container">
+        <div align="center">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">เพิ่มข้อมูล</h4>
+                </div>
+                <form action="/addteacher" method="POST">
+                    <div class="form-group" >
+                        รหัสอาจารย์ <input type="text" name="teacher_id">
+                    </div>
+                    <div class="form-group" >
+                        ชื่อ <input type="text" name="teacher_name">
+                    </div>
+                    <div class="form-group" >
+                        นามสกุล <input type="text" name="teacher_lastName">
+                    </div> 
+                    <input type="submit" value="เพิ่มอาจารย์">
+                    <div class="modal-footer">
+                        <a href="/teacher">กลับ</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        </div>
+   
+</body>
+</html>

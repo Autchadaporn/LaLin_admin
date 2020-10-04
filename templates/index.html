@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="{{ url_for ('static', filename='css/styleNab.css') }}" >
+  <title>index</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="#">LaLin Admin</a>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="color: #fbfbfb;">
+          จัดการฐานความรู้
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Link 1</a>
+          <a class="dropdown-item" href="#">Link 2</a>
+          <a class="dropdown-item" href="#">Link 3</a>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="color: #fbfbfb;">
+          จัดการฐานข้อมูล
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="/adviser">adviser</a>
+          <a class="dropdown-item" href="/calendar">calendar</a>
+          <a class="dropdown-item" href="/case">case</a>
+          <a class="dropdown-item" href="/members">members</a>
+          <a class="dropdown-item" href="/plan">plan</a>
+          <a class="dropdown-item" href="/student">student</a>
+          <a class="dropdown-item" href="/student_gpax">stdent_gpax</a>
+          <a class="dropdown-item" href="/student_grade_show">student_grade</a>
+          <a class="dropdown-item" href="/student_grade_cal_show">student_grade_cal</a>
+          <a class="dropdown-item" href="/study_plan">study_plan</a>
+          <a class="dropdown-item" href="/subject">subject</a>
+          <a class="dropdown-item" href="/teacher">teacher</a>
+          <a class="dropdown-item" href="/topic">topic</a>
+          <a class="dropdown-item" href="/year">year</a>
+          
+        </div>
+      </li>
+    </ul>
+  </nav>
+</body>
+</html>
